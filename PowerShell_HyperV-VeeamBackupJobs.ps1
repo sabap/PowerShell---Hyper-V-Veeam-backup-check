@@ -1,13 +1,13 @@
 ﻿$WorkingDirectory = "C:\TEMP" # Network or Local directory where temp files will be placed
-$EmailFromAddress = "NoReply@sgmc.org" # This is the FROM address that will appear in the email.
+$EmailFromAddress = "NoReply@YOURDOMAIN.COM" # This is the FROM address that will appear in the email.
 # -------- RECIPIENT CHOICES --------------
-$EmailRecipients = (Get-ADGroupMember "SCRIPTSendMail_VeeamHyperVMissingBackup" | Get-ADUser -Properties EmailAddress | Select-Object -Expand EmailAddress) # This is the AD Security group to wich the members will be sent the report.
-#$EmailRecipients = "Recipient@mail.com","AnotherRecipient@mail.com" # Use this variable instead of AD Group for hard-coded recipients
+$EmailRecipients = (Get-ADGroupMember "NAME OF THE AD GROUP CONTAINING THE RECIPIENTS" | Get-ADUser -Properties EmailAddress | Select-Object -Expand EmailAddress) # This is the AD Security group to wich the members will be sent the report.
+#$EmailRecipients = "Recipient@YOURDOMAIN.COM","AnotherRecipient@YOURDOMAIN.COM" # Use this variable instead of AD Group above for hard-coded recipients. Remember to comment out the one above this line.
 # -----------------------------------------
 $EmailSubject = "Hyper-V / Veeam Backup Check" # This is the email SUBJECT.
-$EmailSMTPServer = "relay.sgmc.org"  # This is the SMTP server for the email function.
-$SCVMMServerName = "SG-SCVMM01.sgmc.org" # FQDN of SCVMM Server
-$VeeamServerName = "SG-VEEAM-01.sgmc.org" # FQDN of Veeam Backup and Replication Server
+$EmailSMTPServer = "YOUR-RELAY-SERVER-ADDRESS"  # This is the SMTP server for the email function. (Example: smpt-relay.gmail.com)
+$SCVMMServerName = "YOUR-SCVMM-SERVER-FQDN" # FQDN of SCVMM Server (Example: MyScvmm.Mydomain.local)
+$VeeamServerName = "YOUR-VEEAM-SERVER-FQDN" # FQDN of Veeam Backup and Replication Server (Example: MyVeeam.Mydomain.local)
 # ------------------- END OF CUSTOM VARIABLES -------------------------------------------
 $VeeamFile = "$WorkingDirectory\VeeamServers.txt"
 $ServerNoBackupList = "$WorkingDirectory\NoBackupList.txt"
