@@ -1,5 +1,5 @@
 # PowerShell---Hyper-V-Veeam-backup-check
-Email Admins a list of Hyper-V server that are not part of any Veeam backup job.
+Email Admins a list of Hyper-V servers that are not part of any Veeam backup job.
 
 This script will query your SCVMM Server for a list of all VMs and your Veeam Backup & Replications server for a list of all machines in all backup jobs.  These two lists will be compared and a report containing Hyper-V machines that DO NOT belong to a backup job will be sent to you via email.
 
@@ -11,6 +11,7 @@ This script will query your SCVMM Server for a list of all VMs and your Veeam Ba
    
 **SETUP**
 Modify the following lines:
+```
 1. $WorkingDirectory = "C:\TEMP" # Network or Local directory where temp files will be placed
 2. $EmailFromAddress = "NoReply@YOURDOMAIN.COM" # This is the FROM address that will appear in the email.
 4. $EmailRecipients = (Get-ADGroupMember "NAME OF THE AD GROUP CONTAINING THE RECIPIENTS" | Get-ADUser -Properties EmailAddress | Select-Object -Expand EmailAddress) # This is the AD Security group to wich the members will be sent the report.
@@ -19,6 +20,7 @@ Modify the following lines:
 8. $EmailSMTPServer = "YOUR-RELAY-SERVER-ADDRESS"  # This is the SMTP server for the email function. (Example: smpt-relay.gmail.com)
 9. $SCVMMServerName = "YOUR-SCVMM-SERVER-FQDN" # FQDN of SCVMM Server (Example: MyScvmm.Mydomain.local)
 10. $VeeamServerName = "YOUR-VEEAM-SERVER-FQDN" # FQDN of Veeam Backup and Replication Server (Example: MyVeeam.Mydomain.local)
+```
 
 **SCHEDULED TASK CONFIGURATION**</br>
 1. Schedule a task on a Windows Server or Workstation with PowerShell, VeeamConsole and SCVMM Management Console.
